@@ -41,23 +41,28 @@ public class Triangle {
   private int uniqueSides() {
     return sides.Distinct<double>().Count();
   }
-
+    // Oliksidig
   public bool isScalene() {
     if(uniqueSides()==1)
       return true;
     return false;
   }
-
+    //liksidig
   public bool isEquilateral() {
     if(uniqueSides()==3)
       return true;
     return false;
   }
-
+    //likbent
   public bool isIsosceles() {
     if(uniqueSides()==2)
       return true;
     return false;
+  }
+
+  public bool isIsosceles(int p1, double p2, int p3)
+  {
+      throw new NotImplementedException();
   }
 }
 
