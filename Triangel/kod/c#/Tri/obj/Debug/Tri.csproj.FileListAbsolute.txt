@@ -1,0 +1,5 @@
+C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\bin\Debug\Tri.exe.config
+C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\bin\Debug\Tri.exe
+C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\bin\Debug\Tri.pdb
+C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\obj\Debug\Tri.exe
+C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\obj\Debug\Tri.pdb
