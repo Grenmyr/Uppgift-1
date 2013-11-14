@@ -98,7 +98,28 @@ namespace UnitTestTri
         // Test av Konstruktor med 3 referenser av typen Point.
         public void TriangleOfTypePointTest()
         {
-           
+            // Dunkade in matte som Sharief fixat.           
+            // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
+            Point a = new Point(-8,0);
+            Point b = new Point(0,5);
+            Point c = new Point(0,0);
+
+            double[] sides = (double[])GetFieldValue(new Triangle(a, b, c), "sides");
+
+            Assert.IsTrue(sides[0] == 8);
+            Assert.IsTrue(sides[1] == Math.Sqrt(89));
+            Assert.IsTrue(sides[2] == 5);
+
+            // Testar igen med samma längder på sidorna men annan följdordning på element.
+            Point d = new Point(8, 0);
+            Point e = new Point(8, 5);
+            Point f = new Point(0, 0);
+
+            double[] sides1 = (double[])GetFieldValue(new Triangle(d, e, f), "sides");
+            Assert.IsTrue(sides1[0] == 8);
+            Assert.IsTrue(sides1[1] == 5);
+            Assert.IsTrue(sides1[2] == Math.Sqrt(89));
+            
         }
          
         
