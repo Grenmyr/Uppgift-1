@@ -101,9 +101,9 @@ namespace UnitTestTri
             // http://www.endmemo.com/geometry/triangle.php
             // Dunkade in matte som Sharief fixat.           
             // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
-            Point a = new Point(-8,0);
-            Point b = new Point(0,5);
-            Point c = new Point(0,0);
+            Point a = new Point(-8, 0);
+            Point b = new Point(0, 5);
+            Point c = new Point(0, 0);
 
             double[] sides = (double[])GetFieldValue(new Triangle(a, b, c), "sides");
 
@@ -119,7 +119,17 @@ namespace UnitTestTri
             double[] sides1 = (double[])GetFieldValue(new Triangle(d, e, f), "sides");
             Assert.IsTrue(sides1[0] == 8);
             Assert.IsTrue(sides1[1] == 5);
-            Assert.IsTrue(sides1[2] == Math.Sqrt(89));  
+            Assert.IsTrue(sides1[2] == Math.Sqrt(89));
+
+            Point g = new Point(2, 1);
+            Point h = new Point(8, -1);
+            Point i = new Point(4, 5);
+
+            //Med HJälp av http://www.endmemo.com/geometry/triangle.php vad värdenaa ska vara, så testresultat 3 ska bli sant om algoritmen stämmer.
+            double[] sides2 = (double[])GetFieldValue(new Triangle(g, h, i), "sides");
+            Assert.IsTrue(sides2[0] == Math.Sqrt(20));
+            Assert.IsTrue(sides2[1] == Math.Sqrt(40));
+            Assert.IsTrue(sides2[2] == Math.Sqrt(52));
         }
 
         [TestMethod]
