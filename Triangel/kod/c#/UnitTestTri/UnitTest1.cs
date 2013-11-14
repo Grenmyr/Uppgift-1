@@ -77,11 +77,9 @@ namespace UnitTestTri
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest()
-        {
-            
-
+        {         
             /* Tillelas min "fältet sides" en array med 3 element, som testas genom Getfieldvalue metoden som kopierats skamlöst!    
-             Vi behöver ej testa andra värdetyper än Array av typen Double, Eftersom det är det enda som kommer godkännas som argument vid test 1. 
+            Vi behöver ej testa andra värdetyper än Array av typen Double, Eftersom det är det enda som kommer godkännas som argument vid test 1. 
              Däremot måste vi testa Arrayens längd, eftersom kosntruktorn endast kör med .length metoden vid uppräkning av argument. */
 
             //Test 1:
@@ -94,9 +92,13 @@ namespace UnitTestTri
 
             //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
             double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 1, 2, 82, 1 }), "sides");
-            Assert.IsFalse(sides3[0] == 1 && sides3[1] == 2 && sides3[2] == 82 && sides3[3] == 1);
-            
-            
+            Assert.IsFalse(sides3[0] == 1 && sides3[1] == 2 && sides3[2] == 82 && sides3[3] == 1);                    
+        }
+        [TestMethod]
+        // Test av Konstruktor med 3 referenser av typen Point.
+        public void TriangleOfTypePointTest()
+        {
+           
         }
          
         
