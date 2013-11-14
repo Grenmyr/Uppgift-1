@@ -61,18 +61,16 @@ namespace UnitTestTri
         // Test av Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest()
         {
-            // tilldelar min "fältet sides" som är en array av typ double värden 1, fältet hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
+            //tilldelar min "fältet sides" som är en array av typ double 3 double värden, fältet hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
+            //Test 1: Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde.
             double[] sides = (double[])GetFieldValue(new Triangle(1, 1, 1), "sides");
-
-            
-            // Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde.
             Assert.IsTrue(sides[0] == 1 && sides[1] == 1 && sides[2] == 1);
 
-            // Testar att konstrutorn inte godkänner 0. Använder 0,1,1 eftersom jag vet att 1 tidigare fungerade. ******FAIL******
+            //Test 2: Testar att konstrutorn inte godkänner 0. Använder 0,1,1 eftersom jag vet att 1 tidigare fungerade. ******FAIL******            
             double[] sides2 = (double[])GetFieldValue(new Triangle(0, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { 0, 1, 1 }, sides2);
 
-            // Testar att konstrutorn inte godkänner negative värden (-9). ******FAIL******
+            //Test 3: Testar att konstrutorn inte godkänner negativa värden (-9). ******FAIL******
             double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { -9, 1, 1 }, sides3);
         }
@@ -80,7 +78,24 @@ namespace UnitTestTri
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest()
         {
-            double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 1, 2, 5} ), "sides");
+            
+
+            /* Tillelas min "fältet sides" en array med 3 element, som testas genom Getfieldvalue metoden som kopierats skamlöst!    
+             Vi behöver ej testa andra värdetyper än Array av typen Double, Eftersom det är det enda som kommer godkännas som argument vid test 1. 
+             Däremot måste vi testa Arrayens längd, eftersom kosntruktorn endast kör med .length metoden vid uppräkning av argument. */
+
+            //Test 1:
+            double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 01, 2, 82.00 }), "sides");
+            Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);
+            
+            //Test 2: Testar att kosntruktorn inte kan ta emot mindre än 3 Element av typen double.   ******FAIL******
+            double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 1, 2 }), "sides");
+            Assert.IsFalse(sides2[0] == 1 && sides2[1] == 2);
+
+            //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
+            double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 1, 2, 82, 1 }), "sides");
+            Assert.IsFalse(sides3[0] == 1 && sides3[1] == 2 && sides3[2] == 82 && sides3[3] == 1);
+            
             
         }
          
