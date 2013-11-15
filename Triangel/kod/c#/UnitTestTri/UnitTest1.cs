@@ -22,24 +22,25 @@ namespace UnitTestTri
             Assert.IsFalse(tri2.isIsosceles());
 
             // Test av Likbent triangel
-            Triangle tri3 = new Triangle(4, 11, 11.0);
+            Triangle tri3 = new Triangle(33.9,6.5,33.9);
             Assert.IsTrue(tri3.isIsosceles());
         }
+
         [TestMethod]
         // Test av metod för Liksidig Triangel
         public void isEquilateralTest()
         {
             // Test av Oliksidig Triangel
             Triangle tri1 = new Triangle(1, 3.5, 55);
-            Assert.IsFalse(tri1.isIsosceles());
+            Assert.IsFalse(tri1.isEquilateral());
 
             // Test av Liksidig triangel
-            Triangle tri2 = new Triangle(1011.0, 1011, 1011.0);
-            Assert.IsTrue(tri2.isIsosceles());
+            Triangle tri2 = new Triangle(11, 011, 11.0);
+            Assert.IsTrue(tri2.isEquilateral());
 
             // Test av Likbent triangel
             Triangle tri3 = new Triangle(3, 1, 3.0);
-            Assert.IsFalse(tri3.isIsosceles());
+            Assert.IsFalse(tri3.isEquilateral());
         }
         [TestMethod]
         // Test av metod för Oliksidig Triangel
@@ -47,22 +48,23 @@ namespace UnitTestTri
         {
             // Test av Oliksidig Triangel
             Triangle tri1 = new Triangle(25, 3.5, 1.5);
-            Assert.IsTrue(tri1.isIsosceles());
+            Assert.IsTrue(tri1.isScalene());
 
             // Test av Liksidig triangel
             Triangle tri2 = new Triangle(101, 101.00, 101);
-            Assert.IsFalse(tri2.isIsosceles());
+            Assert.IsFalse(tri2.isScalene());
             Console.WriteLine("bosse banan");
             // Test av Likbent triangel
             Triangle tri3 = new Triangle(77, 77, 1.0);
-            Assert.IsFalse(tri3.isIsosceles());
+            Assert.IsFalse(tri3.isScalene());
         }
         [TestMethod]
-        // Test av Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
+        // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest()
         {
-            //tilldelar min "fältet sides" som är en array av typ double 3 double värden, fältet hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
-            //Test 1: Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde.
+            // Tilldelar  3 double värden, fältet "sides" värde hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
+            
+            //Test 1: Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde. 
             double[] sides = (double[])GetFieldValue(new Triangle(1, 1, 1), "sides");
             Assert.IsTrue(sides[0] == 1 && sides[1] == 1 && sides[2] == 1);
 
@@ -74,6 +76,35 @@ namespace UnitTestTri
             double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { -9, 1, 1 }, sides3);
         }
+        // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
+         public void ExceptionMessageTest()
+        {
+            //Test 1 Matar in 4 double referenser i konstruktorn som hanterar referenser av typ DOUBLE ARRAY,  enkelt ändra till 2 element om så vill.
+            double[] sides = new double[4];
+            for (int i = 0; i <sides.Length; i++)
+            {
+                sides[i] = 1.3 * i;
+            }
+
+            Triangle tri = new Triangle(sides);
+        }
+        
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
+        public void ExceptionMessageTest()
+        {
+            //Här ska jag jobba vidare dock ska jag ej testa denna konstruktor då den atuomatiskt ber om 3 referenser i deklarereingen.
+            double sides1 = 15.0;
+            double sides2 = 101;
+            
+
+            Triangle tri = new Triangle (sides1, sides2);
+        }
+
+
+
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest()

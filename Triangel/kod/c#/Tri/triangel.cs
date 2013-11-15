@@ -48,13 +48,13 @@ public class Triangle {
   }
     // Oliksidig
   public bool isScalene() {
-    if(uniqueSides()==1)
+    if(uniqueSides()==3)
       return true;
     return false;
   }
     //liksidig
   public bool isEquilateral() {
-    if(uniqueSides()==3)
+    if(uniqueSides()==1)
       return true;
     return false;
   }
@@ -65,10 +65,11 @@ public class Triangle {
     return false;
   }
 
-  public bool isIsosceles(int p1, double p2, int p3)
-  {
-      throw new NotImplementedException();
-  }
+    //denna metoden råkade jag lägga in själv tror jag.
+  //public bool isIsosceles(int p1, double p2, int p3)
+  //{
+  //    throw new NotImplementedException();
+  //}
 }
 
 /* Exempel på användning: */
