@@ -29,7 +29,7 @@ namespace UnitTestTri
          // Test av metod för Likbent triangel
          public void isIsoscelesTest3()
          {
-             Triangle tri3 = new Triangle(33.9, 6.5, 33.9);
+             Triangle tri3 = new Triangle(33.9, 30.5, 33.9);
              Assert.IsTrue(tri3.isIsosceles());
          }
 
@@ -37,7 +37,7 @@ namespace UnitTestTri
         // Test av metod för Liksidig Triangel
         public void isEquilateralTest1()
         {          
-            Triangle tri1 = new Triangle(1, 3.5, 55);
+            Triangle tri1 = new Triangle(49, 50.5, 55);
             Assert.IsFalse(tri1.isEquilateral());
         }
         [TestMethod]
@@ -51,7 +51,7 @@ namespace UnitTestTri
         // Test av metod för Liksidig Triangel
         public void isEquilateralTest3()
         {           
-            Triangle tri3 = new Triangle(3, 1, 3.0);
+            Triangle tri3 = new Triangle(3, 4, 3.0);
             Assert.IsFalse(tri3.isEquilateral());
         }
 
@@ -59,7 +59,7 @@ namespace UnitTestTri
         // Test av metod för Oliksidig Triangel
         public void isScaleneTest1()
         {          
-            Triangle tri1 = new Triangle(25, 3.5, 1.5);
+            Triangle tri1 = new Triangle(25, 20.5, 22.5);
             Assert.IsTrue(tri1.isScalene());
         }
         [TestMethod]
@@ -73,7 +73,7 @@ namespace UnitTestTri
         // Test av metod för Oliksidig Triangel
         public void isScaleneTest3()
         {
-            Triangle tri3 = new Triangle(77, 77, 1.0);
+            Triangle tri3 = new Triangle(77, 77, 71.0);
             Assert.IsFalse(tri3.isScalene());
         }
 
@@ -87,7 +87,9 @@ namespace UnitTestTri
             double[] sides = (double[])GetFieldValue(new Triangle(1, 1, 1), "sides");
             Assert.IsTrue(sides[0] == 1 && sides[1] == 1 && sides[2] == 1);
         }
-        [TestMethod]
+
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]       
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest2()
         {
@@ -95,6 +97,7 @@ namespace UnitTestTri
             double[] sides2 = (double[])GetFieldValue(new Triangle(0, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { 0, 1, 1 }, sides2);
         }
+        [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest3()
@@ -152,6 +155,7 @@ namespace UnitTestTri
             double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 01, 2, 82.00 }), "sides");
             Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);         
         }
+        [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest2()
@@ -160,6 +164,7 @@ namespace UnitTestTri
             double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 2, 2 }), "sides");
             Assert.IsFalse(sides2[0] == 2 && sides2[1] == 2);
         }
+        [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest3()

@@ -14,16 +14,37 @@ public struct Point {
 public class Triangle {
   double[] sides;
     // egenskap
-    public addToField(){
-    get
-    }
+
+  public double [] MyProp
+  {
+      get 
+      { return sides; 
+      }
+      set 
+      {
+          if (value.Length !=3 )
+          {
+              throw new ArgumentException("Triangeln har inte 3 sidor");
+          }
+          foreach (double element in value)
+          {
+              if (element <= 0)
+              {
+                  throw new ArgumentException("Feaktigt inmatat värde");
+              }
+          }
+          
+          sides = value; 
+      }
+  }
+  
 
   public Triangle(double a, double b, double c) {
-    sides = new double[] { a, b, c };
+    MyProp = new double[] { a, b, c };
   } 
 
   public Triangle(double[] s) {
-    sides = new double[s.Length];
+    MyProp = new double[s.Length];
     for(int i=0;i<s.Length;i++)
       sides[i]=s[i];
   } 
