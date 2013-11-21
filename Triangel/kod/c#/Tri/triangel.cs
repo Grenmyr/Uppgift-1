@@ -37,7 +37,10 @@ public class Triangle {
           sides = value;
       }
   }
-  
+  public Triangle()
+  {
+      // Empty
+  }
 
   public Triangle(double a, double b, double c)
   {

@@ -178,12 +178,12 @@ namespace UnitTestTri
         {
             // http://www.endmemo.com/geometry/triangle.php     
             // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
+            // Men jag vill att konstruktorn ska kunna hantera negativa tal så testar det. Förväntar mig ***** SUCESS ***** 
             Point a = new Point(-8, 0);
             Point b = new Point(0, 5);
             Point c = new Point(0, 0);
 
             double[] sides = (double[])GetFieldValue(new Triangle(a, b, c), "sides");
-
             Assert.IsTrue(sides[0] == 8);
             Assert.IsTrue(sides[1] == Math.Sqrt(89));
             Assert.IsTrue(sides[2] == 5);
@@ -193,6 +193,7 @@ namespace UnitTestTri
         {
             // http://www.endmemo.com/geometry/triangle.php    
             // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
+            // Men väljer här 3 andra punkter som skapar lika stor triangel. Förväntar mig ***** SUCESS ***** 
             Point d = new Point(9, 0);
             Point e = new Point(9, 5);
             Point f = new Point(1, 0);
@@ -205,7 +206,7 @@ namespace UnitTestTri
         [TestMethod]  
         public void TriangleOfTypePointTest3()
         {
-            // Testar initiera med helt annan triangeldata.
+            // Testar initiera med helt annan triangeldata. Förväntar mig ***** SUCESS ***** 
             Point g = new Point(2, 1);
             Point h = new Point(8, -1);
             Point i = new Point(4, 5);
@@ -219,15 +220,14 @@ namespace UnitTestTri
 
         [TestMethod]
         public void TriangleOfTypePointWithArrayTest1()
-        {               
-            // Test av triangel med 3 punkter som jag på förhand kollat vad resultatet ska bli genom använda.
+        {
+            // Test av triangel med 3 punkter som jag på förhand kollat vad resultatet ska bli genom använda. Förväntar mig ***** SUCESS ***** 
             // http://www.endmemo.com/geometry/triangle.php
             Point a = new Point(-8, 0);
             Point b = new Point(0, 5);
             Point c = new Point(0, 0);
 
             double[] sides = (double[])GetFieldValue(new Triangle(new Point[] {a, b, c }), "sides");
-
             Assert.IsTrue(sides[0] == 8);
             Assert.IsTrue(sides[1] == Math.Sqrt(89));
             Assert.IsTrue(sides[2] == 5);
@@ -235,8 +235,7 @@ namespace UnitTestTri
         [TestMethod]
         public void TriangleOfTypePointWithArrayTest2()
         {
-
-            // Test av samma storlek av triangel men med andra kordinater.
+            // Test av samma storlek av triangel men med andra kordinater. Förväntar mig ***** SUCESS ***** 
             Point d = new Point(9, 0);
             Point e = new Point(9, 5);
             Point f = new Point(1, 0);
@@ -246,12 +245,17 @@ namespace UnitTestTri
             Assert.IsTrue(sides1[1] == 5);
             Assert.IsTrue(sides1[2] == Math.Sqrt(89));
         }
+        [TestMethod]
+        public void TestofGetterinMethod()
+        {
+            // Testar och ser om jag bara kan anropa min tomma konstruktor.
+            Triangle tri = new Triangle();
 
-        
-        // Kopierat från Mats Lock!
+        }
+
+        // Kopierat från Mats Lock! Förväntar mig ***** SUCESS ***** 
         private static object GetFieldValue(object o, string name)
         {
-
             var field = o.GetType().GetField(name, BindingFlags.NonPublic | BindingFlags.Instance);
             if (field == null)
             {
