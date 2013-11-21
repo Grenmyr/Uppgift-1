@@ -11,7 +11,7 @@ namespace UnitTestTri
     {
         [TestMethod]
         // Test av metod för Likbent triangel
-        public void isIsoscelesTest()
+        public void isIsoscelesTest1()
         {
             // Test av Oliksidig Triangel
             Triangle tri1 = new Triangle(1, 3.5, 5);
@@ -19,7 +19,7 @@ namespace UnitTestTri
         }
          [TestMethod]
         // Test av metod för Likbent triangel
-        public void isIsoscelesTest1()
+        public void isIsoscelesTest2()
          {
             Triangle tri2 = new Triangle(4.0, 4, 4.0);
             Assert.IsFalse(tri2.isIsosceles());
@@ -27,7 +27,7 @@ namespace UnitTestTri
 
          [TestMethod]
          // Test av metod för Likbent triangel
-         public void isIsoscelesTest2()
+         public void isIsoscelesTest3()
          {
              Triangle tri3 = new Triangle(33.9, 6.5, 33.9);
              Assert.IsTrue(tri3.isIsosceles());
@@ -35,21 +35,21 @@ namespace UnitTestTri
 
         [TestMethod]
         // Test av metod för Liksidig Triangel
-        public void isEquilateralTest()
+        public void isEquilateralTest1()
         {          
             Triangle tri1 = new Triangle(1, 3.5, 55);
             Assert.IsFalse(tri1.isEquilateral());
         }
         [TestMethod]
         // Test av metod för Liksidig Triangel
-        public void isEquilateralTest1()
+        public void isEquilateralTest2()
         {      
             Triangle tri2 = new Triangle(11, 011, 11.0);
             Assert.IsTrue(tri2.isEquilateral());
         }
           [TestMethod]
         // Test av metod för Liksidig Triangel
-        public void isEquilateralTest2()
+        public void isEquilateralTest3()
         {           
             Triangle tri3 = new Triangle(3, 1, 3.0);
             Assert.IsFalse(tri3.isEquilateral());
@@ -57,38 +57,54 @@ namespace UnitTestTri
 
         [TestMethod]
         // Test av metod för Oliksidig Triangel
-        public void isScaleneTest()
-        {
-            // Test av Oliksidig Triangel
+        public void isScaleneTest1()
+        {          
             Triangle tri1 = new Triangle(25, 3.5, 1.5);
             Assert.IsTrue(tri1.isScalene());
-
-            // Test av Liksidig triangel
+        }
+        [TestMethod]
+        // Test av metod för Oliksidig Triangel
+        public void isScaleneTest2()
+        {
             Triangle tri2 = new Triangle(101, 101.00, 101);
             Assert.IsFalse(tri2.isScalene());
-            Console.WriteLine("bosse banan");
-            // Test av Likbent triangel
+        }
+        [TestMethod]
+        // Test av metod för Oliksidig Triangel
+        public void isScaleneTest3()
+        {
             Triangle tri3 = new Triangle(77, 77, 1.0);
             Assert.IsFalse(tri3.isScalene());
         }
+
         [TestMethod]
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
-        public void TriangleOfTypeDoubleTest()
+        public void TriangleOfTypeDoubleTest1()
         {
             // Tilldelar  3 double värden, fältet "sides" värde hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
             
             //Test 1: Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde. 
             double[] sides = (double[])GetFieldValue(new Triangle(1, 1, 1), "sides");
             Assert.IsTrue(sides[0] == 1 && sides[1] == 1 && sides[2] == 1);
-
+        }
+        [TestMethod]
+        // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
+        public void TriangleOfTypeDoubleTest2()
+        {
             //Test 2: Testar att konstrutorn inte godkänner 0. Använder 0,1,1 eftersom jag vet att 1 tidigare fungerade. ******FAIL******            
             double[] sides2 = (double[])GetFieldValue(new Triangle(0, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { 0, 1, 1 }, sides2);
-
+        }
+        [TestMethod]
+        // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
+        public void TriangleOfTypeDoubleTest3()
+        {
             //Test 3: Testar att konstrutorn inte godkänner negativa värden (-9). ******FAIL******
             double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 8, 8), "sides");
             CollectionAssert.AreNotEqual(new double[] { -9, 8, 8 }, sides3);
         }
+
+
         // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
