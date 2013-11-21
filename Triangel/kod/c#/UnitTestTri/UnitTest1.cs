@@ -16,32 +16,45 @@ namespace UnitTestTri
             // Test av Oliksidig Triangel
             Triangle tri1 = new Triangle(1, 3.5, 5);
             Assert.IsFalse(tri1.isIsosceles());
-
-            // Test av Liksidig triangel
+        }
+         [TestMethod]
+        // Test av metod för Likbent triangel
+        public void isIsoscelesTest1()
+         {
             Triangle tri2 = new Triangle(4.0, 4, 4.0);
             Assert.IsFalse(tri2.isIsosceles());
+         }
 
-            // Test av Likbent triangel
-            Triangle tri3 = new Triangle(33.9,6.5,33.9);
-            Assert.IsTrue(tri3.isIsosceles());
-        }
+         [TestMethod]
+         // Test av metod för Likbent triangel
+         public void isIsoscelesTest2()
+         {
+             Triangle tri3 = new Triangle(33.9, 6.5, 33.9);
+             Assert.IsTrue(tri3.isIsosceles());
+         }
 
         [TestMethod]
         // Test av metod för Liksidig Triangel
         public void isEquilateralTest()
-        {
-            // Test av Oliksidig Triangel
+        {          
             Triangle tri1 = new Triangle(1, 3.5, 55);
             Assert.IsFalse(tri1.isEquilateral());
-
-            // Test av Liksidig triangel
+        }
+        [TestMethod]
+        // Test av metod för Liksidig Triangel
+        public void isEquilateralTest1()
+        {      
             Triangle tri2 = new Triangle(11, 011, 11.0);
             Assert.IsTrue(tri2.isEquilateral());
-
-            // Test av Likbent triangel
+        }
+          [TestMethod]
+        // Test av metod för Liksidig Triangel
+        public void isEquilateralTest2()
+        {           
             Triangle tri3 = new Triangle(3, 1, 3.0);
             Assert.IsFalse(tri3.isEquilateral());
         }
+
         [TestMethod]
         // Test av metod för Oliksidig Triangel
         public void isScaleneTest()
