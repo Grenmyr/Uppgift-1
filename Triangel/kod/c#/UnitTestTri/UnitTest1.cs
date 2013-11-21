@@ -152,9 +152,10 @@ namespace UnitTestTri
              Däremot måste vi testa Arrayens längd, eftersom kosntruktorn endast kör med .length metoden vid uppräkning av argument. */
 
             //Test 1:
-            double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 01, 2, 82.00 }), "sides");
-            Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);         
+            double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 77.4, 81, 82.00 }), "sides");
+            Assert.IsTrue(sides[0] == 77.4 && sides[1] == 81 && sides[2] == 82.00);         
         }
+
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
