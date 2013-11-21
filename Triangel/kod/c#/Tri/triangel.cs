@@ -48,13 +48,13 @@ public class Triangle {
   }
     // Oliksidig
   public bool isScalene() {
-    if(uniqueSides()==3)
+    if(uniqueSides()==1)
       return true;
     return false;
   }
     //liksidig
   public bool isEquilateral() {
-    if(uniqueSides()==1)
+    if(uniqueSides()==3)
       return true;
     return false;
   }

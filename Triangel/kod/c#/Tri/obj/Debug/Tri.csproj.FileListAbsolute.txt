@@ -3,4 +3,3 @@ C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\bin\Debug\Tri.ex
 C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\bin\Debug\Tri.pdb
 C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\obj\Debug\Tri.exe
 C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\obj\Debug\Tri.pdb
-C:\Users\dg222cs\Documents\GitHub\Uppgift-1\Triangel\kod\c#\Tri\obj\Debug\Tri.csprojResolveAssemblyReference.cache

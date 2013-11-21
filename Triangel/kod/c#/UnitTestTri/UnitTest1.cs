@@ -89,19 +89,27 @@ namespace UnitTestTri
             }
 
             Triangle tri = new Triangle(sides);
-        }
         
+            // Test av konstruktor av typen point Array. Med 2 element bara. Förväntar mig undantag kastas.
+            Point a = new Point(-8, 0);
+            Point b = new Point(0, 5);
+
+            double[] sides1 = (double[])GetFieldValue(new Triangle(new Point[] { a, b }), "sides");
+        }
+
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void ExceptionMessageTest()
+        public void ExceptionMessageTest1()
         {
-            //Här ska jag jobba vidare dock ska jag ej testa denna konstruktor då den atuomatiskt ber om 3 referenser i deklarereingen.
-            double sides1 = 15.0;
-            double sides2 = 101;
-            
+            // Test av konstruktor av typen point Array. Med 2 element bara. Förväntar mig undantag kastas.
+            Point a = new Point(-8, 0);
+            Point b = new Point(0, 5);
 
-            Triangle tri = new Triangle (sides1, sides2);
+            double[] sides1 = (double[])GetFieldValue(new Triangle(new Point[] { a, b }), "sides");
         }
+
+
+        
 
 
 
@@ -187,7 +195,7 @@ namespace UnitTestTri
             Assert.IsTrue(sides1[1] == 5);
             Assert.IsTrue(sides1[2] == Math.Sqrt(89));
         }
-         
+
         
         // Kopierat från Mats Lock!
         private static object GetFieldValue(object o, string name)
