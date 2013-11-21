@@ -13,8 +13,8 @@ public struct Point {
 
 public class Triangle {
   double[] sides;
-    // egenskap
 
+  // egenskap
   public double[] MyProp
   {
       get
@@ -39,17 +39,22 @@ public class Triangle {
   }
   
 
-  public Triangle(double a, double b, double c) {
-    MyProp = new double[] { a, b, c };
+  public Triangle(double a, double b, double c)
+  {
+     MyProp = new double[] { a, b, c };
   } 
 
   public Triangle(double[] s) 
   {
+        
     MyProp = s;
   } 
 
-  public Triangle(Point a, Point b, Point c) {
-    MyProp = myMethod(new Point [] {a,b,c});
+  public Triangle(Point a, Point b, Point c)
+  {     
+       // Lägger in punkterna i en array som skickas till en privat metod för beräkning av triangelns sidor. Triangelns sidor returneras i en array
+      // som sedan tilldelas egenskapen myProp för validering innan sidorna slutligen initieras till fältet sides.
+        MyProp = myMethod(new Point [] {a,b,c});
   }
 
   public Triangle(Point[] s) 
@@ -62,6 +67,7 @@ public class Triangle {
   }
   private double[] myMethod(Point [] array)
     {
+        // Metod, kör uträkning får point Trianglar.
         sides = new double[3];
         sides[0] = Math.Sqrt(Math.Pow((double)(array[2].x - array[0].x), 2.0) + Math.Pow((double)(array[2].y - array[0].y), 2.0));
         sides[1] = Math.Sqrt(Math.Pow((double)(array[1].x - array[0].x), 2.0) + Math.Pow((double)(array[1].y - array[0].y), 2.0));

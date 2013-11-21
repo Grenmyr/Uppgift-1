@@ -13,12 +13,12 @@ namespace UnitTestTri
         // Test av metod för Likbent triangel
         public void isIsoscelesTest1()
         {
-            // Test av Oliksidig Triangel
-            Triangle tri1 = new Triangle(1, 3.5, 5);
+            // Testar att föra data för oliksidig triangel till min Isosceles Metod. Förväntar mig ****FAIL ******
+            Triangle tri1 = new Triangle(4, 3.5, 5);
             Assert.IsFalse(tri1.isIsosceles());
         }
          [TestMethod]
-        // Test av metod för Likbent triangel
+        // Testar att föra in data för liksidig triangel till min Isosceles Metod. Förväntar mig **** FAIL ******
         public void isIsoscelesTest2()
          {
             Triangle tri2 = new Triangle(4.0, 4, 4.0);
@@ -26,7 +26,7 @@ namespace UnitTestTri
          }
 
          [TestMethod]
-         // Test av metod för Likbent triangel
+         // Testar att föra in data för Likbent triangel till min Isosceles Metod. Förväntar mig **** SUCCESS ******
          public void isIsoscelesTest3()
          {
              Triangle tri3 = new Triangle(33.9, 30.5, 33.9);
@@ -34,21 +34,21 @@ namespace UnitTestTri
          }
 
         [TestMethod]
-        // Test av metod för Liksidig Triangel
+         // Testar att föra in data för oliksidig triangel till min Equilateral Metod. Förväntar mig **** FAIL ******
         public void isEquilateralTest1()
         {          
             Triangle tri1 = new Triangle(49, 50.5, 55);
             Assert.IsFalse(tri1.isEquilateral());
         }
         [TestMethod]
-        // Test av metod för Liksidig Triangel
+        // Testar att föra in data för liksidig triangel till min Equilateral Metod. Förväntar mig **** SUCESS ******
         public void isEquilateralTest2()
         {      
             Triangle tri2 = new Triangle(11, 011, 11.0);
             Assert.IsTrue(tri2.isEquilateral());
         }
           [TestMethod]
-        // Test av metod för Liksidig Triangel
+        // Testar att föra in data för likbent triangel till min Equilateral Metod. Förväntar mig **** FAIL ******
         public void isEquilateralTest3()
         {           
             Triangle tri3 = new Triangle(3, 4, 3.0);
@@ -56,21 +56,21 @@ namespace UnitTestTri
         }
 
         [TestMethod]
-        // Test av metod för Oliksidig Triangel
+        // Testar att föra in data för oliksidig triangel till min Scalene Metod. Förväntar mig **** SUCESS ******
         public void isScaleneTest1()
         {          
             Triangle tri1 = new Triangle(25, 20.5, 22.5);
             Assert.IsTrue(tri1.isScalene());
         }
         [TestMethod]
-        // Test av metod för Oliksidig Triangel
+        // Testar att föra in data för liksidig triangel till min Scalene Metod. Förväntar mig **** FAIL ******
         public void isScaleneTest2()
         {
             Triangle tri2 = new Triangle(101, 101.00, 101);
             Assert.IsFalse(tri2.isScalene());
         }
         [TestMethod]
-        // Test av metod för Oliksidig Triangel
+        // Testar att föra in data för Likbent triangel till min Scalene Metod. Förväntar mig **** FAIL ******
         public void isScaleneTest3()
         {
             Triangle tri3 = new Triangle(77, 77, 71.0);
@@ -80,10 +80,8 @@ namespace UnitTestTri
         [TestMethod]
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest1()
-        {
-            // Tilldelar  3 double värden, fältet "sides" värde hämtas med hjälp av mats getfieldvalue metod som kopierats skamlöst.
-            
-            //Test 1: Testar att reclection fungerar och att konstruktorn kan tilldela fältet sides värde. 
+        {    
+            //Test 1: Testar att recflection fungerar och att konstruktorn kan tilldela fältet sides värde. Förväntar mig ***** SUCESS *****   
             double[] sides = (double[])GetFieldValue(new Triangle(1, 1, 1), "sides");
             Assert.IsTrue(sides[0] == 1 && sides[1] == 1 && sides[2] == 1);
         }
@@ -93,7 +91,8 @@ namespace UnitTestTri
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest2()
         {
-            //Test 2: Testar att konstrutorn inte godkänner 0. Använder 0,1,1 eftersom jag vet att 1 tidigare fungerade. ******FAIL******            
+            //Test 2: Testar att konstrutorn inte godkänner 0. Använder 0,1,1 eftersom jag vet att 1 tidigare fungerade Förväntar mig ***** FAIL ***** 
+            // Och att UNDANTAG SKA KASTAS vid felaktig indata.   
             double[] sides2 = (double[])GetFieldValue(new Triangle(0, 1, 1), "sides");
             CollectionAssert.AreNotEqual(new double[] { 0, 1, 1 }, sides2);
         }
@@ -102,18 +101,19 @@ namespace UnitTestTri
         // Test av Konstruktors BASFUNKTION med referens double som tilldelar fältet  "[] double sides" värde.
         public void TriangleOfTypeDoubleTest3()
         {
-            //Test 3: Testar att konstrutorn inte godkänner negativa värden (-9). ******FAIL******
+            //Test 3: Testar att konstrutorn inte godkänner negativa värden (-9).Förväntar mig  ******FAIL******
+            // Och att UNDANTAG SKA KASTAS vid negativa triangelsidor.
             double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 8, 8), "sides");
             CollectionAssert.AreNotEqual(new double[] { -9, 8, 8 }, sides3);
         }
-
 
         // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
          public void ExceptionMessageTest1()
         {
-            //Test 1 Matar in 4 double referenser i konstruktorn som hanterar referenser av typ DOUBLE ARRAY,  enkelt ändra till 2 element om så vill.
+            //Test 1 Matar in 4 double referenser i konstruktorn som hanterar referenser av typ DOUBLE ARRAY,  Förväntar mig  ******FAIL******
+            // Och att UNDANTAG SKA KASTAS vid fel antal sidor.
             double[] sides = new double[4];
             for (int i = 0; i <sides.Length; i++)
             {
@@ -127,7 +127,7 @@ namespace UnitTestTri
         [TestMethod]
         public void ExceptionMessageTest2()
         {
-            // Test av konstruktor av typen point Array. Med 2 element bara. Förväntar mig undantag kastas.
+            // Test av konstruktor av typen point Array. Med initiering av  2 element bara. Förväntar mig UNDANTAG SKA KASTAS
             Point a = new Point(-8, 0);
             Point b = new Point(0, 5);
 
@@ -137,21 +137,17 @@ namespace UnitTestTri
         [TestMethod]
         public void ExceptionMessageTest3()
         {
-            // Test att undantag kastas då konstruktor initieras med negativa tal.
+            // Test att kontruktor av typen double array. Med initiering av negativt tal. Förväntar mig UNDANTAG SKA KASTAS
 
             double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 5, -5, 4 }), "sides");
             
         }
 
         [TestMethod]
-        // Test av Konstruktor med referens double [] som till konstruktorn.
+        // Test av Konstruktor med referens double []  till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest1()
-        {         
-            /* Tillelas min "fältet sides" en array med 3 element, som testas genom Getfieldvalue metoden som kopierats skamlöst!    
-            Vi behöver ej testa andra värdetyper än Array av typen Double, Eftersom det är det enda som kommer godkännas som argument vid test 1. 
-             Däremot måste vi testa Arrayens längd, eftersom kosntruktorn endast kör med .length metoden vid uppräkning av argument. */
-
-            //Test 1:
+        {
+            //Testar att Konstruktorn godkänner en array med giltiga värden och att de retuneras. Förväntar mig ***** SUCESS ***** 
             double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 77.4, 81, 82.00 }), "sides");
             Assert.IsTrue(sides[0] == 77.4 && sides[1] == 81 && sides[2] == 82.00);         
         }
@@ -161,7 +157,8 @@ namespace UnitTestTri
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest2()
         {
-            //Test 2: Testar att kosntruktorn inte kan ta emot mindre än 3 Element av typen double.   ******FAIL******
+            //Testar att konstruktorn inte kan ta emot mindre än 3 Element av typen double. Förväntar mig   ******FAIL******
+            // Och att UNDANTAG SKA KASTAS eftersom det bara är array med 2 element.
             double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 2, 2 }), "sides");
             Assert.IsFalse(sides2[0] == 2 && sides2[1] == 2);
         }
@@ -170,7 +167,8 @@ namespace UnitTestTri
         // Test av Konstruktor med referens double [] som till konstruktorn.
         public void TriangleOfTypeDoubleArrayTest3()
         {
-            //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
+            // Testar att konstruktorn inte kan ta emot mer än 4 element av typen double. Förväntar mig ******FAIL******
+            // Och att UNDANTAG SKA KASTAS eftersom det bara är array med 4 element.
             double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 77, 77, 82, 99 }), "sides");
             Assert.IsFalse(sides3[0] == 77 && sides3[1] == 77 && sides3[2] == 82 && sides3[3] == 99);
         }
