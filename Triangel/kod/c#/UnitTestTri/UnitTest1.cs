@@ -73,8 +73,8 @@ namespace UnitTestTri
             CollectionAssert.AreNotEqual(new double[] { 0, 1, 1 }, sides2);
 
             //Test 3: Testar att konstrutorn inte godkänner negativa värden (-9). ******FAIL******
-            double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 1, 1), "sides");
-            CollectionAssert.AreNotEqual(new double[] { -9, 1, 1 }, sides3);
+            double[] sides3 = (double[])GetFieldValue(new Triangle(-9, 8, 8), "sides");
+            CollectionAssert.AreNotEqual(new double[] { -9, 8, 8 }, sides3);
         }
         // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         [ExpectedException(typeof(ArgumentException))]
@@ -107,6 +107,15 @@ namespace UnitTestTri
 
             double[] sides1 = (double[])GetFieldValue(new Triangle(new Point[] { a, b }), "sides");
         }
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
+        public void ExceptionMessageTest2()
+        {
+            // Test att undantag kastas då konstruktor initieras med negativa tal.
+
+            double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 5, -5, 4 }), "sides");
+            
+        }
 
 
         
@@ -126,12 +135,12 @@ namespace UnitTestTri
             Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);
             
             //Test 2: Testar att kosntruktorn inte kan ta emot mindre än 3 Element av typen double.   ******FAIL******
-            double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 1, 2 }), "sides");
-            Assert.IsFalse(sides2[0] == 1 && sides2[1] == 2);
+            double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 2, 2 }), "sides");
+            Assert.IsFalse(sides2[0] == 2 && sides2[1] == 2);
 
             //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
-            double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 1, 2, 82, 1 }), "sides");
-            Assert.IsFalse(sides3[0] == 1 && sides3[1] == 2 && sides3[2] == 82 && sides3[3] == 1);                    
+            double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 77, 77, 82, 99 }), "sides");
+            Assert.IsFalse(sides3[0] == 77 && sides3[1] == 77 && sides3[2] == 82 && sides3[3] == 99);                    
         }
         [TestMethod]
         // Test av Konstruktor med 3 referenser av typen Point.
