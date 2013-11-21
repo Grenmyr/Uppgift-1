@@ -13,6 +13,10 @@ public struct Point {
 
 public class Triangle {
   double[] sides;
+    // egenskap
+    public addToField(){
+    get
+    }
 
   public Triangle(double a, double b, double c) {
     sides = new double[] { a, b, c };
