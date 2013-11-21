@@ -108,7 +108,7 @@ namespace UnitTestTri
         // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-         public void ExceptionMessageTest()
+         public void ExceptionMessageTest1()
         {
             //Test 1 Matar in 4 double referenser i konstruktorn som hanterar referenser av typ DOUBLE ARRAY,  enkelt ändra till 2 element om så vill.
             double[] sides = new double[4];
@@ -118,17 +118,11 @@ namespace UnitTestTri
             }
 
             Triangle tri = new Triangle(sides);
-        
-            // Test av konstruktor av typen point Array. Med 2 element bara. Förväntar mig undantag kastas.
-            Point a = new Point(-8, 0);
-            Point b = new Point(0, 5);
-
-            double[] sides1 = (double[])GetFieldValue(new Triangle(new Point[] { a, b }), "sides");
         }
 
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void ExceptionMessageTest1()
+        public void ExceptionMessageTest2()
         {
             // Test av konstruktor av typen point Array. Med 2 element bara. Förväntar mig undantag kastas.
             Point a = new Point(-8, 0);
@@ -138,7 +132,7 @@ namespace UnitTestTri
         }
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void ExceptionMessageTest2()
+        public void ExceptionMessageTest3()
         {
             // Test att undantag kastas då konstruktor initieras med negativa tal.
 
@@ -146,14 +140,9 @@ namespace UnitTestTri
             
         }
 
-
-        
-
-
-
         [TestMethod]
         // Test av Konstruktor med referens double [] som till konstruktorn.
-        public void TriangleOfTypeDoubleArrayTest()
+        public void TriangleOfTypeDoubleArrayTest1()
         {         
             /* Tillelas min "fältet sides" en array med 3 element, som testas genom Getfieldvalue metoden som kopierats skamlöst!    
             Vi behöver ej testa andra värdetyper än Array av typen Double, Eftersom det är det enda som kommer godkännas som argument vid test 1. 
@@ -161,22 +150,29 @@ namespace UnitTestTri
 
             //Test 1:
             double[] sides = (double[])GetFieldValue(new Triangle(new double[] { 01, 2, 82.00 }), "sides");
-            Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);
-            
+            Assert.IsTrue(sides[0] == 1 && sides[1] == 2 && sides[2] == 82);         
+        }
+        [TestMethod]
+        // Test av Konstruktor med referens double [] som till konstruktorn.
+        public void TriangleOfTypeDoubleArrayTest2()
+        {
             //Test 2: Testar att kosntruktorn inte kan ta emot mindre än 3 Element av typen double.   ******FAIL******
             double[] sides2 = (double[])GetFieldValue(new Triangle(new double[] { 2, 2 }), "sides");
             Assert.IsFalse(sides2[0] == 2 && sides2[1] == 2);
-
-            //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
-            double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 77, 77, 82, 99 }), "sides");
-            Assert.IsFalse(sides3[0] == 77 && sides3[1] == 77 && sides3[2] == 82 && sides3[3] == 99);                    
         }
         [TestMethod]
-        // Test av Konstruktor med 3 referenser av typen Point.
-        public void TriangleOfTypePointTest()
+        // Test av Konstruktor med referens double [] som till konstruktorn.
+        public void TriangleOfTypeDoubleArrayTest3()
         {
-            // http://www.endmemo.com/geometry/triangle.php
-            // Dunkade in matte som Sharief fixat.           
+            //Test 3: Testar att konstruktorn inte kan ta emot mer än 4 element av typen double.     ******FAIL******
+            double[] sides3 = (double[])GetFieldValue(new Triangle(new double[] { 77, 77, 82, 99 }), "sides");
+            Assert.IsFalse(sides3[0] == 77 && sides3[1] == 77 && sides3[2] == 82 && sides3[3] == 99);
+        }
+        [TestMethod]       
+        // Test av Konstruktor med 3 referenser av typen Point.
+        public void TriangleOfTypePointTest1()
+        {
+            // http://www.endmemo.com/geometry/triangle.php     
             // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
             Point a = new Point(-8, 0);
             Point b = new Point(0, 5);
@@ -187,8 +183,12 @@ namespace UnitTestTri
             Assert.IsTrue(sides[0] == 8);
             Assert.IsTrue(sides[1] == Math.Sqrt(89));
             Assert.IsTrue(sides[2] == 5);
-
-            // Testar igen med samma längder på sidorna men annan följdordning på element.
+        }
+        [TestMethod]  
+        public void TriangleOfTypePointTest2()
+        {
+            // http://www.endmemo.com/geometry/triangle.php    
+            // Väljer längden på sidorna till  5 och 8 då ska hypotenusan bli 9 (81)
             Point d = new Point(9, 0);
             Point e = new Point(9, 5);
             Point f = new Point(1, 0);
@@ -197,12 +197,16 @@ namespace UnitTestTri
             Assert.IsTrue(sides1[0] == 8);
             Assert.IsTrue(sides1[1] == 5);
             Assert.IsTrue(sides1[2] == Math.Sqrt(89));
-
+        }
+        [TestMethod]  
+        public void TriangleOfTypePointTest3()
+        {
+            // Testar initiera med helt annan triangeldata.
             Point g = new Point(2, 1);
             Point h = new Point(8, -1);
             Point i = new Point(4, 5);
 
-            //Med HJälp av http://www.endmemo.com/geometry/triangle.php vad värdenaa ska vara, så testresultat 3 ska bli sant om algoritmen stämmer.
+            //Med Hjälp av http://www.endmemo.com/geometry/triangle.php vad värdenaa ska vara, så testresultat 3 ska bli sant om algoritmen stämmer.
             double[] sides2 = (double[])GetFieldValue(new Triangle(g, h, i), "sides");
             Assert.IsTrue(sides2[0] == Math.Sqrt(20));
             Assert.IsTrue(sides2[1] == Math.Sqrt(40));
@@ -210,9 +214,10 @@ namespace UnitTestTri
         }
 
         [TestMethod]
-        public void TriangleOfTypePointWithArrayTest()
+        public void TriangleOfTypePointWithArrayTest1()
         {               
-            // Här ska jag dunka in en helt annan värde
+            // Test av triangel med 3 punkter som jag på förhand kollat vad resultatet ska bli genom använda.
+            // http://www.endmemo.com/geometry/triangle.php
             Point a = new Point(-8, 0);
             Point b = new Point(0, 5);
             Point c = new Point(0, 0);
@@ -222,8 +227,12 @@ namespace UnitTestTri
             Assert.IsTrue(sides[0] == 8);
             Assert.IsTrue(sides[1] == Math.Sqrt(89));
             Assert.IsTrue(sides[2] == 5);
+        }
+        [TestMethod]
+        public void TriangleOfTypePointWithArrayTest2()
+        {
 
-            // Samma här.
+            // Test av samma storlek av triangel men med andra kordinater.
             Point d = new Point(9, 0);
             Point e = new Point(9, 5);
             Point f = new Point(1, 0);
