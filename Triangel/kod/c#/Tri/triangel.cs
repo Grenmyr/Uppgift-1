@@ -12,65 +12,64 @@ public struct Point {
 }
 
 public class Triangle {
-  double[] sides;
+     double[] sides;
 
-  // egenskap
-  public double[] MyProp
-  {
-      get
+      // egenskap
+      public double[] MyProp
       {
-          return sides;
-      }
-      set
-      {
-          if (value.Length != 3)
+          get
           {
-              throw new ArgumentException("Triangeln har inte 3 sidor");
+              return sides;
           }
-          foreach (double element in value)
+          set
           {
-              if (element <= 0)
+              if (value.Length != 3)
               {
-                  throw new ArgumentException("Feaktigt inmatat värde");
+                  throw new ArgumentException("Triangeln har inte 3 sidor");
               }
+              foreach (double element in value)
+              {
+                  if (element <= 0)
+                  {
+                      throw new ArgumentException("Feaktigt inmatat värde");
+                  }
+              }
+              sides = value;
           }
-          sides = value;
-      }
-  }
-  public Triangle()
-  {
-      // Empty
-  }
-
-  public Triangle(double a, double b, double c)
-  {
-     MyProp = new double[] { a, b, c };
-  } 
-
-  public Triangle(double[] s) 
-  {
-        
-    MyProp = s;
-  } 
-
-  public Triangle(Point a, Point b, Point c)
-  {     
-       // Lägger in punkterna i en array som skickas till en privat metod för beräkning av triangelns sidor. Triangelns sidor returneras i en array
-      // som sedan tilldelas egenskapen myProp för validering innan sidorna slutligen initieras till fältet sides.
-        MyProp = myMethod(new Point [] {a,b,c});
-  }
-
-  public Triangle(Point[] s) 
-  {
-      if (s.Length != 3)
-      {
-          throw new ArgumentException("arrayens längd är ej 3");
-      }
-    MyProp = myMethod(s);
-  }
-  private double[] myMethod(Point [] array)
+    }
+    public Triangle()
     {
-        // Metod, kör uträkning får point Trianglar.
+        // Empty
+    }
+
+    public Triangle(double a, double b, double c)
+    {
+        MyProp = new double[] { a, b, c };
+    } 
+
+    public Triangle(double[] s) 
+    {       
+        MyProp = s;
+    } 
+
+    public Triangle(Point a, Point b, Point c)
+    {     
+        // Lägger in punkterna i en array som skickas till en privat metod för beräkning av triangelns sidor. Triangelns sidor returneras i en array
+        // som sedan tilldelas egenskapen myProp för validering innan sidorna slutligen initieras till fältet sides.
+        MyProp = myMethod(new Point [] {a,b,c});
+    }
+
+    public Triangle(Point[] s) 
+    {
+        if (s.Length != 3)
+        {
+            throw new ArgumentException("arrayens längd är ej 3");
+        }
+        MyProp = myMethod(s);
+    }
+    private double[] myMethod(Point [] array)
+    {
+        // Metod, kör uträkning för point Trianglar.
         sides = new double[3];
         sides[0] = Math.Sqrt(Math.Pow((double)(array[2].x - array[0].x), 2.0) + Math.Pow((double)(array[2].y - array[0].y), 2.0));
         sides[1] = Math.Sqrt(Math.Pow((double)(array[1].x - array[0].x), 2.0) + Math.Pow((double)(array[1].y - array[0].y), 2.0));
@@ -78,26 +77,36 @@ public class Triangle {
         return sides;
     }
 
-  private int uniqueSides() {
-    return sides.Distinct<double>().Count();
-  }
+    private int uniqueSides() 
+        {
+            return sides.Distinct<double>().Count();
+        }
     // Oliksidig
-  public bool isScalene() {
-    if(uniqueSides()==3)
-      return true;
-    return false;
-  }
+    public bool isScalene() 
+        {
+            if (uniqueSides() == 3)
+            {
+                return true;
+            }            
+            return false;
+        }
     //liksidig
-  public bool isEquilateral() {
-    if(uniqueSides()==1)
-      return true;
-    return false;
-  }
+    public bool isEquilateral() 
+        {
+        if (uniqueSides() == 1)
+            {
+                return true;
+            }    
+            return false;
+        }
     //likbent
-  public bool isIsosceles() {
-    if(uniqueSides()==2)
-      return true;
-    return false;
-  }
+    public bool isIsosceles() 
+    {
+        if (uniqueSides() == 2) 
+        {
+            return true;
+        }     
+        return false;
+    }
 }
 
