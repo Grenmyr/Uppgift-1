@@ -23,16 +23,21 @@ public class Triangle {
           }
           set
           {
-              if (value.Length != 3)
+             
+              if (value.Length != 3  )
               {
                   throw new ArgumentException("Triangeln har inte 3 sidor");
               }
               foreach (double element in value)
               {
-                  if (element <= 0)
-                  {
-                      throw new ArgumentException("Feaktigt inmatat värde");
-                  }
+                    if (element <= 0 )
+                    {
+                        throw new ArgumentException("Feaktigt inmatat värde");
+                    }
+                    if (element > Math.Pow(2, 32))
+                    {
+                        throw new ArgumentException("För stor sida inmatad.");
+                    }
               }
               sides = value;
           }

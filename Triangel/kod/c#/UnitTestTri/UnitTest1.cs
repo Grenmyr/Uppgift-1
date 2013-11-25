@@ -11,7 +11,7 @@ namespace UnitTestTri
     {
         [TestMethod]
         // Test av metod för Likbent triangel
-        public void isIsoscelesTest1()
+        public void isIsoscelesTestOfExpectFail()
         {
             // Testar att föra data för oliksidig triangel till min Isosceles Metod. Förväntar mig ****FAIL ******
             Triangle tri1 = new Triangle(4, 3.5, 5);
@@ -19,7 +19,7 @@ namespace UnitTestTri
         }
          [TestMethod]
         // Testar att föra in data för liksidig triangel till min Isosceles Metod. Förväntar mig **** FAIL ******
-        public void isIsoscelesTest2()
+        public void isIsoscelesTest2ExpectFail()
          {
             Triangle tri2 = new Triangle(4.0, 4, 4.0);
             Assert.IsFalse(tri2.isIsosceles());
@@ -27,7 +27,7 @@ namespace UnitTestTri
 
          [TestMethod]
          // Testar att föra in data för Likbent triangel till min Isosceles Metod. Förväntar mig **** SUCCESS ******
-         public void isIsoscelesTest3()
+         public void isIsoscelesTest3ExpectTrue()
          {
              Triangle tri3 = new Triangle(33.9, 30.5, 33.9);
              Assert.IsTrue(tri3.isIsosceles());
@@ -35,21 +35,21 @@ namespace UnitTestTri
 
         [TestMethod]
          // Testar att föra in data för oliksidig triangel till min Equilateral Metod. Förväntar mig **** FAIL ******
-        public void isEquilateralTest1()
+        public void isEquilateralTest1ExpectFail()
         {          
             Triangle tri1 = new Triangle(49, 50.5, 55);
             Assert.IsFalse(tri1.isEquilateral());
         }
         [TestMethod]
         // Testar att föra in data för liksidig triangel till min Equilateral Metod. Förväntar mig **** SUCESS ******
-        public void isEquilateralTest2()
+        public void isEquilateralTest2ExpectTrue()
         {      
             Triangle tri2 = new Triangle(11, 011, 11.0);
             Assert.IsTrue(tri2.isEquilateral());
         }
           [TestMethod]
         // Testar att föra in data för likbent triangel till min Equilateral Metod. Förväntar mig **** FAIL ******
-        public void isEquilateralTest3()
+        public void isEquilateralTest3ExpectFail()
         {           
             Triangle tri3 = new Triangle(3, 4, 3.0);
             Assert.IsFalse(tri3.isEquilateral());
@@ -57,21 +57,21 @@ namespace UnitTestTri
 
         [TestMethod]
         // Testar att föra in data för oliksidig triangel till min Scalene Metod. Förväntar mig **** SUCESS ******
-        public void isScaleneTest1()
+        public void isScaleneTest1ExpectTrue()
         {          
             Triangle tri1 = new Triangle(25, 20.5, 22.5);
             Assert.IsTrue(tri1.isScalene());
         }
         [TestMethod]
         // Testar att föra in data för liksidig triangel till min Scalene Metod. Förväntar mig **** FAIL ******
-        public void isScaleneTest2()
+        public void isScaleneTest2ExpectFail()
         {
             Triangle tri2 = new Triangle(101, 101.00, 101);
             Assert.IsFalse(tri2.isScalene());
         }
         [TestMethod]
         // Testar att föra in data för Likbent triangel till min Scalene Metod. Förväntar mig **** FAIL ******
-        public void isScaleneTest3()
+        public void isScaleneTest3ExpectFail()
         {
             Triangle tri3 = new Triangle(77, 77, 71.0);
             Assert.IsFalse(tri3.isScalene());
@@ -110,7 +110,7 @@ namespace UnitTestTri
         // Test av UNDANTAGSHANTERING Konstruktor med referens double som tilldelar fältet  "[] double sides" värde.
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-         public void ExceptionMessageTest1()
+         public void ExceptionMessageTestForInitializingToManySides()
         {
             //Test 1 Matar in 4 double referenser i konstruktorn som hanterar referenser av typ DOUBLE ARRAY,  Förväntar mig  ******FAIL******
             // Och att UNDANTAG SKA KASTAS vid fel antal sidor.
@@ -125,7 +125,7 @@ namespace UnitTestTri
 
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void ExceptionMessageTest2()
+        public void ExceptionMessageTestForInitializingToFewSides()
         {
             // Test av konstruktor av typen point Array. Med initiering av  2 element bara. Förväntar mig UNDANTAG SKA KASTAS
             Point a = new Point(-8, 0);
@@ -135,7 +135,7 @@ namespace UnitTestTri
         }
         [ExpectedException(typeof(ArgumentException))]
         [TestMethod]
-        public void ExceptionMessageTest3()
+        public void ExceptionMessageTestForInsertingNegativeSides()
         {
             // Test att kontruktor av typen double array. Med initiering av negativt tal. Förväntar mig UNDANTAG SKA KASTAS
 
@@ -246,11 +246,19 @@ namespace UnitTestTri
             Assert.IsTrue(sides1[2] == Math.Sqrt(89));
         }
         [TestMethod]
-        public void TestofGetterinMethod()
+        public void TestofInitializingEmptyConstructor() 
         {
-            // Testar och ser om jag bara kan anropa min tomma konstruktor.
+            // Testar och ser om jag bara kan anropa min tomma konstruktor. Förväntar mig ***** SUCESS ***** 
             Triangle tri = new Triangle();
 
+        }
+        [ExpectedException(typeof(ArgumentException))]
+        [TestMethod]
+        public void TestofValueLimitsForINT()
+        {
+            // Testar att jag inte kan mata in siffror större än vad typen Int klarar av (2^32). Förväntar mig ******FAIL******
+            double[] sides2 = (double[])GetFieldValue(new Triangle(Math.Pow(2,33), Math.Pow(2,33 ), Math.Pow(2,33)), "sides");
+            CollectionAssert.AreNotEqual(new double[] { Math.Pow(2, 33), Math.Pow(2, 33), Math.Pow(2, 33) }, sides2);
         }
 
         // Kopierat från Mats Lock! Förväntar mig ***** SUCESS ***** 
