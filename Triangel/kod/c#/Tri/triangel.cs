@@ -34,7 +34,7 @@ public class Triangle {
                     {
                         throw new ArgumentException("Feaktigt inmatat värde");
                     }
-                    if (element > Math.Pow(2, 32))
+                    if (element > Math.Pow(2, 64))
                     {
                         throw new ArgumentException("För stor sida inmatad.");
                     }

@@ -257,8 +257,8 @@ namespace UnitTestTri
         public void TestofValueLimitsForINT()
         {
             // Testar att jag inte kan mata in siffror större än vad typen Int klarar av (2^32). Förväntar mig ******FAIL******
-            double[] sides2 = (double[])GetFieldValue(new Triangle(Math.Pow(2,33), Math.Pow(2,33 ), Math.Pow(2,33)), "sides");
-            CollectionAssert.AreNotEqual(new double[] { Math.Pow(2, 33), Math.Pow(2, 33), Math.Pow(2, 33) }, sides2);
+            double[] sides2 = (double[])GetFieldValue(new Triangle(Math.Pow(2,65), Math.Pow(2,65 ), Math.Pow(2,65)), "sides");
+            CollectionAssert.AreNotEqual(new double[] { Math.Pow(2, 65), Math.Pow(2, 65), Math.Pow(2, 65) }, sides2);
         }
 
         // Kopierat från Mats Lock! Förväntar mig ***** SUCESS ***** 
